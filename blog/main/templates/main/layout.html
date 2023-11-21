@@ -1,5 +1,6 @@
 <!doctype html>
 {% load static %}
+{% load main_tags %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,10 +13,17 @@
 </head>
 <body>
     <section class="navi">
-        <div class="bar">
-            <a href="">Все посты</a>
-            <a href="">Создать новый</a>
-        </div>
+        <a href="{% url 'main_page' %}">Все посты</a>
+        <a href="{% url 'add_page' %}">Создать новый</a>
+    </section>
+    <section class="tags">
+        <h4>Теги</h4>
+        <ul>
+            {% news_tags as tags %}
+            {% for tag in tags %}
+                <li><a href="{% url 'main_page' %}?tag={{ tag.name }}">{{ tag }}</a></li>
+            {% endfor %}
+        </ul>
     </section>
     <section class="content">
         {% block content %}{% endblock %}

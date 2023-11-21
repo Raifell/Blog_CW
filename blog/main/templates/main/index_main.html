@@ -1,5 +1,14 @@
 {% extends 'main/layout.html' %}
 
 {% block content %}
-    <h1>Main</h1>
+    {% for post in posts %}
+        <div class="info_box">
+            <div style="display: flex; gap: 10px">{% for tag in post.tag_list.all %}<p>#{{ tag }}</p>{% endfor %}</div>
+            <h4>{{ post.title }}</h4>
+            <p>{{ post.text|linebreaks|truncatewords:50 }}</p>
+            <div class="link">
+                <a href="{% url 'post_page' post.slug%}">Читать пост</a>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}

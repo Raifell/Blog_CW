@@ -1,0 +1,9 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+    <form method="post" class="form">
+    {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Создать" style="margin-top: 10px">
+    </form>
+{% endblock %}
